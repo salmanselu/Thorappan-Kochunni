@@ -1,7 +1,6 @@
-
 import tweepy, time
-# Enter your keys/secrets as strings in the following fields
 
+# Enter your keys/secrets as strings in the following fields
 CONSUMER_KEY = ""
 CONSUMER_SECRET = ""
 ACCESS_KEY = ""
@@ -39,7 +38,6 @@ def get_all_tweets(tweet):
 
 def getAllTweetsInThreadAfterThis(tweetId):
     thread = []
-    hasReply = True
     res = api.get_status(tweetId, tweet_mode='extended')
     allTillThread = get_all_tweets(res)
     thread.append(res)
@@ -64,7 +62,6 @@ def getAllTweetsInThreadAfterThis(tweetId):
 
 def getAllTweetsInThreadBeforeThis(tweetId):
     thread = []
-    hasReply = True
     res = api.get_status(tweetId, tweet_mode='extended')
     while res.in_reply_to_status_id is not None:
         res = api.get_status(res.in_reply_to_status_id, tweet_mode='extended')
@@ -81,16 +78,22 @@ def getAllTweetsInThread(tweetId):
     return tweetsAll
 
 def printAllTweet(tweets):
+    global direct_message
+    direct_message = ''
     if len(tweets)>0:
         print("Thread Messages include:-")
         for tweetId in range(len(tweets)):
             print(str(tweetId+1)+". "+tweets[tweetId].full_text)
+            #####################################################################
+            direct_message += str(tweetId+1)+". "+tweets[tweetId].full_text + '\n\n'
+            #####################################################################
             print("")
+
     else:
         print("No Tweet to print")
 
 ########################################################################################################
-########### COPIED FROM CSDOJO TWITTER BOT CODE ##########################################################################
+########################################################################################################
 ########################################################################################################
 # This section just has basic functions for read and write
 
@@ -126,13 +129,20 @@ def handle_last_seen_id():
                         tweet_mode='extended')
     
     for mention in reversed(mentions):
+        global direct_message
         if last_seen_id != mention.id:
             last_seen_id = mention.id
             store_last_seen_id(last_seen_id, FILE_NAME)
             allTweets = getAllTweetsInThread(last_seen_id)
-            print("===========================")
+            print("==============================================")
             printAllTweet(allTweets)
-            print("===========================")
+            print("==============================================")
+            # sending the direct message
+            recipient_id = mention.user.id   #twitter id is supposed to be a long    
+            direct_message = api.send_direct_message(recipient_id, direct_message)
+  
+            # printing the text of the sent direct message
+            # print(direct_message.message_create['message_data']['text']) # for debugging
         
 ########################################################################################################
 ########################################################################################################
@@ -141,5 +151,9 @@ def handle_last_seen_id():
 
 
 while __name__ == '__main__':
-    handle_last_seen_id()
-    time.sleep(2)
+    try:
+        handle_last_seen_id()
+    except tweepy.error.RateLimitError:
+        print("Rate exceeded. \n")
+    else:
+        time.sleep(15)
