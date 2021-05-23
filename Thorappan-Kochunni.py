@@ -157,4 +157,4 @@ while __name__ == '__main__':
     except tweepy.error.RateLimitError:
         print("Rate exceeded. \n")
     else:
-        time.sleep(15)
+       # time.sleep(15)
