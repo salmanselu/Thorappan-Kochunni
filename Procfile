@@ -1,1 +1,1 @@
-web: python Thorappan-Kochunni.py
+worker: python Thorappan-Kochunni.py
