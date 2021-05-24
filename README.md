@@ -12,11 +12,12 @@ BFH/recVnBzHhHSPt6Aop/2021
 ## Link to product walkthrough
 [link to video]
 ## How it Works ?
-1. Step 1
-2. Step 2
+The bot works by using the twitter API. Bot accesses the associated twitter account using the API credentials.
+It reads 
 ## Libraries used
-Python Tweepy - 3.10.0
+This projects requires that you have Python Tweepy - 3.10.0 installed in your system. If you are deploying to heroku, it will automatically be done for you. 
 ## How to configure
 Instructions for setting up project
 ## How to Run
-Instructions for running
+Upload to your deployment service after adding your twitter API credentials as environment variables to the deployment service.
+Try this youtube video for more info: 
