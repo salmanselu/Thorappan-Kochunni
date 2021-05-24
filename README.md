@@ -5,7 +5,7 @@ https://twitter.com/Thorappan_k_
 
 ## Team members
 1. Althaf Ashraf https://github.com/ghoul-666
-2. Muhammed Jezwan [Embed perosnal github URL]
+2. Muhammed Jezwan https://github.com/Jezwan
 3. Salman Nazeer https://github.com/salmanselu
 ## Team Id
 BFH/recVnBzHhHSPt6Aop/2021
@@ -13,11 +13,10 @@ BFH/recVnBzHhHSPt6Aop/2021
 [link to video]
 ## How it Works ?
 The bot works by using the twitter API. Bot accesses the associated twitter account using the API credentials.
-It reads 
 ## Libraries used
-This projects requires that you have Python Tweepy - 3.10.0 installed in your system. If you are deploying to heroku, it will automatically be done for you. 
+This projects requires that you have Python Tweepy - 3.10.0 installed in your system. If you are deploying to heroku, it will automatically be done for you because of the requirements.txt file. 
 ## How to configure
-Instructions for setting up project
+The only thing you have to do is to add your own Twitter API credentials as environment variables.
 ## How to Run
 Upload to your deployment service after adding your twitter API credentials as environment variables to the deployment service.
-Try this youtube video for more info: 
+Try this youtube video for more info: https://www.youtube.com/watch?v=iLvMYXKIcPo
