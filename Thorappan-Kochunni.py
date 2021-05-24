@@ -1,16 +1,17 @@
 import tweepy
-import time
+from time import sleep
 from os import environ
-# Enter your keys/secrets as strings in the following fields
-CONSUMER_KEY = environ['CONSUMER_KEY']
+
+# Getting authentication data from environment ############################
+CONSUMER_KEY = environ['CONSUMER_KEY']        
 CONSUMER_SECRET = environ['CONSUMER_SECRET']
 ACCESS_KEY = environ['ACCESS_KEY']
 ACCESS_SECRET = environ['ACCESS_SECRET']
 
-auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
+authorise = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+authorise.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 
-api = tweepy.API(auth)
+api = tweepy.API(authorise)
 ############################################################################
 
 
@@ -93,8 +94,7 @@ def printAllTweet(tweets):
     else:
         print("No Tweet to print")
 
-########################################################################################################
-########################################################################################################
+
 ########################################################################################################
 # This section just has basic functions for read and write
 
@@ -122,12 +122,8 @@ last_seen_id = 0
 def handle_last_seen_id():   
     global last_seen_id
     last_seen_id = retrieve_last_seen_id(FILE_NAME)
-    # NOTE: We need to use tweet_mode='extended' below to show
-    # all full tweets (with full_text). Without it, long tweets
-    # would be cut off.
-    mentions = api.mentions_timeline(
-                        last_seen_id,  # Last seen ID is an int
-                        tweet_mode='extended')
+
+    mentions = api.mentions_timeline(last_seen_id, tweet_mode='extended')
     
     for mention in reversed(mentions):
         global direct_message
@@ -138,22 +134,16 @@ def handle_last_seen_id():
             print("==============================================")
             printAllTweet(allTweets)
             print("==============================================")
+            
             # sending the direct message
-            recipient_id = mention.user.id   #twitter id is supposed to be a long    
-            direct_message = api.send_direct_message(recipient_id, direct_message)
+            recipient_id = mention.user.id     
+            direct_message = api.send_direct_message(recipient_id, direct_message) 
   
-            # printing the text of the sent direct message
-            # print(direct_message.message_create['message_data']['text']) # for debugging
-        
-########################################################################################################
-########################################################################################################
-########################################################################################################
+ ########################################################################################       
 
-
-
-while __name__ == '__main__':
+while True:
     try:
         handle_last_seen_id()
     except tweepy.error.RateLimitError:
         print("Rate exceeded. \n")
-    time.sleep(15)
+    sleep(15)
