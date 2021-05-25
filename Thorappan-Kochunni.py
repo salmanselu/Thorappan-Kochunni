@@ -147,5 +147,5 @@ while True:
     except tweepy.error.RateLimitError: # To handle rate limit error
         print("Rate exceeded. \n")
     except tweepy.error.TweepError:     # To handle error
-        print("Rate exceeded. \n")
+        print("Tweepy error. \n")
     sleep(15)                           # To prevent rate limit error by this app
