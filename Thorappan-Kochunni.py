@@ -2,6 +2,7 @@ import tweepy # Tweepy used for connecting to twitter
 from time import sleep # sleep function 
 from os import environ # to access environment variables
 
+
 # Getting authentication data from environment ############################
 CONSUMER_KEY = environ['CONSUMER_KEY']        
 CONSUMER_SECRET = environ['CONSUMER_SECRET']
