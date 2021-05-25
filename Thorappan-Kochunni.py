@@ -1,6 +1,6 @@
-import tweepy
-from time import sleep
-from os import environ
+import tweepy # Tweepy used for connecting to twitter
+from time import sleep # sleep function 
+from os import environ # to access environment variables
 
 # Getting authentication data from environment ############################
 CONSUMER_KEY = environ['CONSUMER_KEY']        
@@ -130,7 +130,7 @@ def handle_last_seen_id():
         if last_seen_id != mention.id:
             last_seen_id = mention.id
             store_last_seen_id(last_seen_id, FILE_NAME)
-            allTweets = getAllTweetsInThread(last_seen_id)
+            allTweets = getAllTweetsInThread(last_seen_id) 
             print("==============================================")
             printAllTweet(allTweets)
             print("==============================================")
@@ -144,6 +144,8 @@ def handle_last_seen_id():
 while True:
     try:
         handle_last_seen_id()
-    except tweepy.error.RateLimitError:
+    except tweepy.error.RateLimitError: # To handle rate limit error
         print("Rate exceeded. \n")
-    sleep(15)
+    except tweepy.error.TweepError:     # To handle error
+        print("Rate exceeded. \n")
+    sleep(15)                           # To prevent rate limit error by this app
