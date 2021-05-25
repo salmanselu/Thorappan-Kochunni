@@ -11,7 +11,7 @@ https://twitter.com/Thorappan_k_
 ## Team Id
 BFH/recVnBzHhHSPt6Aop/2021
 ## Link to product walkthrough
-[link to video]
+https://www.loom.com/share/67812d0fa9204bc583d8f27c8b5bdaae
 ## How it Works ?
 The bot works by using the twitter API. Bot accesses the associated twitter account using the API credentials.
 ## Libraries used
