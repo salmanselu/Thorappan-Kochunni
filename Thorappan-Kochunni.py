@@ -142,7 +142,7 @@ def handle_last_seen_id():
   
  ########################################################################################       
 
-while True:
+while __name__ == __main__:
     try:
         handle_last_seen_id()
     except tweepy.error.RateLimitError: # To handle rate limit error
