@@ -1,8 +1,10 @@
 ![BFH Banner](https://trello-attachments.s3.amazonaws.com/542e9c6316504d5797afbfb9/542e9c6316504d5797afbfc1/39dee8d993841943b5723510ce663233/Frame_19.png)
 
-# Thorappan Kochunni Twitter Bot
+# Thorappan Kochunni Twitter Bot 
 Thorappan Kochunni bot  is a twitter bot that will help you save long twitter threads for later reading. Just reply to any tweet on the thread by tagging @Thorappan_k_ and the bot will DM the entire thread to you. You may even add extra notes while tagging as the bot sends those to you as well.
 https://twitter.com/Thorappan_k_
+
+__The bot is no longer running__
 
 ## Team members
 1. Althaf Ashraf https://github.com/ghoul-666
